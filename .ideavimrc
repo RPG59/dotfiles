@@ -1,0 +1,9 @@
+noremap n j
+noremap e k
+noremap i l
+noremap k n
+noremap s i
+noremap j e
+
+syntax on
+set number
