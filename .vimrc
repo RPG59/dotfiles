@@ -15,6 +15,11 @@ noremap k n
 noremap s i
 noremap j e
 
+nnoremap dh <C-w><C-h>
+nnoremap dn <C-w><C-j>
+nnoremap de <C-w><C-k>
+nnoremap di <C-w><C-l>
+
 syntax on
 set number
 
