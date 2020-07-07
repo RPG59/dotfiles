@@ -1,12 +1,16 @@
 call plug#begin('~/.vim/plugged')
-
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-abolish'
+"Plug 'felikz/ctrlp-py-matcher'
 "Plug 'valloric/youcompleteme'
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
+"map <C-p> :ctrlp_match_func
 
 noremap n j
 noremap e k
@@ -15,12 +19,42 @@ noremap k n
 noremap s i
 noremap j e
 
+nnoremap dh <C-w><C-h>
+nnoremap dn <C-w><C-j>
+nnoremap de <C-w><C-k>
+nnoremap di <C-w><C-l>
+nnoremap <C-s> <C-i>
+nnoremap <C-i> <C-s>
+
+nnoremap \ :Ag<SPACE>
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+set bs=2
+
 syntax on
-set number
+set nu! rnu!
 
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set wildmode=longest,list
+
+"set statusline+=%f
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+au BufNew,BufEnter,BufWinEnter,WinEnter,BufNew * match ExtraWhitespace /\s\+$/
+
+"airline
+"let g:airline_powerline_fonts = 0
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_section_b = ''
+"let g:airline_section_x = ''
+let g:airline_section_y = ''
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/bin/*,*/alembic/*,*/assets/*,*/lib/*
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|js|py)$'
+
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -30,6 +64,8 @@ let g:coc_global_extensions = [
   \ 'coc-prettier', 
   \ 'coc-json', 
   \ ]
+
+
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -159,4 +195,23 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+
+
+function! GoToJump()
+    jumps
+    let j = input("Please select your jump: ")
+    if j != ''
+        let pattern = '\v\c^\+'
+        if j =~ pattern
+            let j = substitute(j, pattern, '', 'g')
+            execute "normal " . j . "\<c-i>"
+        else
+            execute "normal " . j . "\<c-o>"
+        endif
+    endif
+endfunction
+
+
 
