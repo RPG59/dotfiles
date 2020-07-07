@@ -23,6 +23,7 @@ nnoremap dh <C-w><C-h>
 nnoremap dn <C-w><C-j>
 nnoremap de <C-w><C-k>
 nnoremap di <C-w><C-l>
+
 nnoremap <C-s> <C-i>
 nnoremap <C-i> <C-s>
 
