@@ -1,0 +1,15 @@
+---
+- name: Dotfiles
+  gather_facts: false
+  hosts: windows
+  vars:
+    ansible_user: {{user}}
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5985
+    ansible_connection: winrm
+    ansible_winrm_transport: basic
+
+  tasks:
+    - name: Map CAPS to ESC
+      ansible.builtin.include_role:
+        name: map_caps_to_esc
