@@ -1,0 +1,11 @@
+- name: Add or update registry path Keyboard Layout, with binary entry 'Scancode Map'
+  ansible.windows.win_regedit:
+    path: HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout
+    name: "Scancode Map"
+    data:
+      [
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x06, 0x00, 0x00, 0x00, 0x01, 0x00, 0x3a, 0x00,
+        0x1d, 0x00, 0x5b, 0xe0
+      ]
+    type: binary

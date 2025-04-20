@@ -1,0 +1,8 @@
+- name: Dotfiles
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Map CAPS to ESC
+      include_role:
+        name: map_caps_to_esc
