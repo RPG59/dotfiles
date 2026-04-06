@@ -1,0 +1,23 @@
+noremap n j
+noremap e k
+noremap i l
+noremap k n
+noremap s i
+noremap j e
+
+nnoremap dh <C-w><C-h>
+nnoremap dn <C-w><C-j>
+nnoremap de <C-w><C-k>
+nnoremap di <C-w><C-l>
+
+nnoremap <C-s> <C-i>
+nnoremap <C-i> <C-s>
+
+set bs=2
+
+syntax on
+set nu! rnu!
+
+set tabstop=4
+set shiftwidth=4
+set expandtab

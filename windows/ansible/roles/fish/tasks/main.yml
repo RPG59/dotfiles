@@ -1,0 +1,38 @@
+- name: Install fish
+  ansible.builtin.package:
+    name: fish
+    state: present
+
+- name: Add fish to shells
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: "{{ (ansible_facts['os_family'] == 'Darwin') | ternary('/opt/homebrew/bin/fish', '/usr/bin/fish') }}"
+    state: present
+  become: true
+
+- name: Set fish as default shell
+  ansible.builtin.shell:
+    cmd: chsh -s "{{ (ansible_facts['os_family'] == 'Darwin') | ternary('/opt/homebrew/bin/fish', '/usr/bin/fish') }}"
+
+- name: Install oh-my-posh
+  ansible.builtin.package:
+    name: oh-my-posh
+    state: present
+
+- name: Install fisher
+  ansible.builtin.shell:
+    cmd: |
+      curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish > ~/.config/fish/functions/fisher_installer.fish
+      fish -c "fisher_installer install jorgebucaran/fisher"
+      rm ~/.config/fish/functions/fisher_installer.fish
+    creates: ~/.config/fish/functions/fisher.fish
+
+- name: Install fish git plugin
+  ansible.builtin.shell:
+    cmd: fisher install jhillyerd/plugin-git
+    executable: fish
+
+- name: Install NVM
+  ansible.builtin.shell:
+    cmd: fisher install jorgebucaran/nvm.fish
+    executable: fish

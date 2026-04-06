@@ -1,0 +1,7 @@
+- name: Dotfiles
+  hosts: localhost
+  connection: local
+
+  roles:
+    - roles/fish
+    - roles/config

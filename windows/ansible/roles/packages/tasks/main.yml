@@ -1,0 +1,42 @@
+---
+- name: Install linear mouse
+  ansible.builtin.package:
+    name: linear-mouse
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Install linear mouse
+  ansible.builtin.package:
+    name: betterdisplay
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Ghosty
+  ansible.builtin.package:
+    name: ghosty
+    state: present
+
+- name: rg
+  ansible.builtin.package:
+    name: ripgrep
+    state: present
+
+- name: btop
+  ansible.builtin.package:
+    name: btop
+    state: present
+
+- name: htop
+  ansible.builtin.package:
+    name: htop
+    state: present
+
+- name: pyenv
+  ansible.builtin.package:
+    name: pyenv
+    state: present
+
+- name: dbeaver-community
+  ansible.builtin.package:
+    name: dbeaver-community
+    state: present

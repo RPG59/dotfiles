@@ -1,0 +1,39 @@
+- name: Global gitignore
+  ansible.builtin.copy:
+    src: .gitignore_global
+    dest: ~/.gitignore_global
+    mode: 0644
+
+- name: Global gitconfig
+  ansible.builtin.copy:
+    src: .gitconfig
+    dest: ~/.gitconfig
+    mode: 0644
+
+- name: vimrc
+  ansible.builtin.copy:
+    src: .vimrc
+    dest: ~/.vimrc
+    mode: 0644
+
+- name: ideavimrc
+  ansible.builtin.copy:
+    src: .ideavimrc
+    dest: ~/.ideavimrc
+    mode: 0644
+
+- name: tmux.conf
+  ansible.builtin.copy:
+    src: .tmux.conf
+    dest: ~/.tmux.conf
+    mode: 0644
+
+- name: fish config
+  ansible.builtin.copy:
+  src: config.fish
+  dest: ~/.config/fish/config.fish
+  mode: 0644
+
+# key repeat
+# defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+# defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
